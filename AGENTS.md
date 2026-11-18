@@ -6,6 +6,8 @@ This is a minimal Laravel + React/TypeScript + Vite application derived from the
 
 Before creating, moving, or restructuring React pages, components, or features, read `.agents/skills/file-architecture/SKILL.md` and its canonical reference. The skill is versioned in this repository so it works on another machine. Next.js-specific instructions do not apply to Laravel routing.
 
+For shadcn/ui work, also read `.agents/skills/shadcn/SKILL.md`. Use `pnpm ui:info --json` to inspect project context and `pnpm ui:add` for additions or update previews. These project runners invoke the official CLI while preserving the required component folders. The local file-architecture rules take precedence over upstream flat-file examples. `.agents/skills/migrate-radix-to-base/SKILL.md` is available when an actual Radix-to-Base migration is requested.
+
 ## Scope
 
 - Write all code identifiers, UI labels, messages, comments, and project documentation in English. Keep the default application locale set to `en`.

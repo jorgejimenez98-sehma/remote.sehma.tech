@@ -77,6 +77,8 @@ pnpm ui:info --json
 
 `components.json` keeps the Base UI preset, source paths, and `@/` aliases configured for the CLI. The project runner in `scripts/shadcn.mjs` temporarily presents existing primitives in the CLI's standard layout, then restores the component folders, rewrites imports, and regenerates `ui/index.ts`. Cleanup also runs when the CLI reports an error. Additions run Biome afterward. Use `pnpm ui:add` instead of invoking `shadcn add` directly; preview updates with `pnpm ui:add <component> --dry-run` before changing existing components.
 
+The official `shadcn` and `migrate-radix-to-base` skills are installed in `.agents/skills/`, alongside the project `file-architecture` skill. Follow the project folder convention when using their upstream examples; the migration skill is only needed for an actual migration.
+
 React Hook Form, Zod, and `@hookform/resolvers` are installed for typed forms. Use `useForm` with `zodResolver`, and connect each controlled input with `Controller` and the local `Field`, `FieldLabel`, and `FieldError` components. Set an input `id` matching its label's `htmlFor`, pass `aria-invalid` from field state, and connect descriptions and errors with `aria-describedby`. Forms should live in their owning feature rather than the shared primitive directory.
 
 TanStack Query is available throughout the application through `AppProvider`. Its shared `QueryClient` lives in `resources/react/src/lib/query-client.ts`; the provider also initializes Base UI tooltips. No API requests, forms, business modules, or database writes are added to the placeholder page.
