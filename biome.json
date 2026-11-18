@@ -1,0 +1,95 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "resources/react/src/**",
+      "vite.config.js",
+      "package.json",
+      "tsconfig.json",
+      "biome.json"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "asNeeded",
+      "arrowParentheses": "asNeeded",
+      "attributePosition": "multiline",
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "trailingCommas": "none"
+    }
+  },
+  "css": {
+    "formatter": {
+      "indentStyle": "space",
+      "indentWidth": 2
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "style": {
+        "noImplicitBoolean": "off",
+        "useNamingConvention": "off",
+        "useImportType": "off"
+      },
+      "suspicious": {
+        "noUnknownAtRules": "off",
+        "noDuplicateJsxProps": "error",
+        "noArrayIndexKey": "off",
+        "noConsole": {
+          "level": "on",
+          "options": {
+            "allow": ["assert", "error", "info", "warn", "debug"]
+          }
+        }
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "useAltText": "error"
+      },
+      "complexity": {
+        "noUselessFragments": "error",
+        "useLiteralKeys": "off"
+      },
+      "correctness": {
+        "useHookAtTopLevel": "error",
+        "useExhaustiveDependencies": "error"
+      }
+    },
+    "domains": {
+      "react": "recommended"
+    }
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ["react", "react/**", "react-dom", "react-dom/**"],
+              ":ALIAS:",
+              "./**",
+              [":NODE:", ":PACKAGE:", ":PATH:"]
+            ],
+            "identifierOrder": "natural"
+          }
+        }
+      }
+    }
+  }
+}

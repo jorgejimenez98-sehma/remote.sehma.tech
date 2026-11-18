@@ -29,6 +29,18 @@ pnpm dev
 
 Vite automatically detects Herd's certificate when HTTPS is enabled for the site matching this directory's name. If you rename the site, update `APP_URL`; if the site uses an alias different from the directory name, set `detectTls` in `vite.config.js` to the full local domain.
 
+## Frontend code quality
+
+Biome 2.6.8 handles frontend linting, formatting, and import organization. Its configuration follows the basic rules from `app.sehma`: two-space indentation, a 100-character JavaScript line width, optional semicolons, no trailing commas, recommended React rules, accessibility checks, and grouped imports. Logging allows `console.assert`, `error`, `info`, `warn`, and `debug`.
+
+```sh
+pnpm lint
+pnpm lint:fix
+pnpm format
+```
+
+`pnpm lint` checks formatting, lint rules, and imports without changing files. `pnpm lint:fix` applies safe fixes, and `pnpm format` only formats files. Checks cover `resources/react/src/`, `vite.config.js`, `package.json`, `tsconfig.json`, and `biome.json`.
+
 ## Database
 
 The application uses the local MySQL database `sehma_remote` at `127.0.0.1:3306`. The local defaults use the `root` account with an empty password; adjust `DB_USERNAME` and `DB_PASSWORD` in `.env` for your MySQL server. The database stays empty, with no tables or records. There are no models, migrations, seeders, factories, or database autoload namespaces. Do not run migrations or seeders to start this base. Sessions and cache use files, and queues run synchronously.

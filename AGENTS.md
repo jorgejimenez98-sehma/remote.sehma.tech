@@ -9,6 +9,7 @@ Before creating, moving, or restructuring React pages, components, or features, 
 ## Scope
 
 - Write all code identifiers, UI labels, messages, comments, and project documentation in English. Keep the default application locale set to `en`.
+- Use Biome for frontend linting, formatting, and import organization. Run `pnpm lint` and `pnpm build` after frontend changes; use `pnpm lint:fix` for safe automatic fixes. Keep Biome scoped to frontend source and configuration files.
 - Do not add Bookmed UI.
 - Keep Laravel pinned to `12.62.0`, matching the installed and locked version in the local `../api.sehma` repository for `api.sehma.tech`. Do not change this version without a user request.
 - Keep the database, business modules, and integrations empty until requested. Do not add models, migrations, seeders, factories, or database autoload namespaces. Do not copy data, secrets, storage, or environment files from the source project.
