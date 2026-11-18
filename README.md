@@ -39,9 +39,47 @@ pnpm lint:fix
 pnpm format
 ```
 
-`pnpm lint` checks formatting, lint rules, and imports without changing files. `pnpm lint:fix` applies safe fixes, and `pnpm format` only formats files. Checks cover `resources/react/src/`, `vite.config.js`, `package.json`, `tsconfig.json`, and `biome.json`.
+`pnpm lint` checks formatting, lint rules, and imports without changing files. `pnpm lint:fix` applies safe fixes, and `pnpm format` only formats files. Checks cover `resources/react/src/`, `scripts/`, `vite.config.js`, `package.json`, `tsconfig.json`, `components.json`, and `biome.json`.
 
 VS Code workspace settings use the recommended `biomejs.biome` extension to format frontend files, apply safe fixes, and organize imports when saving with `Command + S`. Install the recommended extension when opening the project if it is not already installed.
+
+## UI components, forms, and server state
+
+shadcn/ui is initialized with the Base UI `base-nova` preset. Component source files belong to this repository under `resources/react/src/components/ui/`; there is no Bookmed UI dependency. The initial primitives are button, input, textarea, label, field, checkbox, select, separator, dialog, and tooltip.
+
+Each primitive has its own matching folder and filename, with a single shared barrel:
+
+```text
+resources/react/src/components/ui/
+├── index.ts
+├── button/button.tsx
+├── checkbox/checkbox.tsx
+├── dialog/dialog.tsx
+├── field/field.tsx
+├── input/input.tsx
+├── label/label.tsx
+├── select/select.tsx
+├── separator/separator.tsx
+├── textarea/textarea.tsx
+└── tooltip/tooltip.tsx
+```
+
+Application code imports from `@/components/ui`. Internal primitive dependencies use explicit sibling paths, such as `../button/button`, to avoid circular imports through the barrel.
+
+Tailwind CSS 4 runs through `@tailwindcss/vite`. The local stylesheet defines the same light and dark color tokens as `app.sehma`, including its teal primary and brand colors. Use semantic classes such as `bg-background`, `text-foreground`, `bg-primary`, and `text-muted-foreground`. Adding the `dark` class to the document root activates the dark palette.
+
+To add another local component:
+
+```sh
+pnpm ui:add button
+pnpm ui:info --json
+```
+
+`components.json` keeps the Base UI preset, source paths, and `@/` aliases configured for the CLI. The project runner in `scripts/shadcn.mjs` temporarily presents existing primitives in the CLI's standard layout, then restores the component folders, rewrites imports, and regenerates `ui/index.ts`. Cleanup also runs when the CLI reports an error. Additions run Biome afterward. Use `pnpm ui:add` instead of invoking `shadcn add` directly; preview updates with `pnpm ui:add <component> --dry-run` before changing existing components.
+
+React Hook Form, Zod, and `@hookform/resolvers` are installed for typed forms. Use `useForm` with `zodResolver`, and connect each controlled input with `Controller` and the local `Field`, `FieldLabel`, and `FieldError` components. Set an input `id` matching its label's `htmlFor`, pass `aria-invalid` from field state, and connect descriptions and errors with `aria-describedby`. Forms should live in their owning feature rather than the shared primitive directory.
+
+TanStack Query is available throughout the application through `AppProvider`. Its shared `QueryClient` lives in `resources/react/src/lib/query-client.ts`; the provider also initializes Base UI tooltips. No API requests, forms, business modules, or database writes are added to the placeholder page.
 
 ## Database
 

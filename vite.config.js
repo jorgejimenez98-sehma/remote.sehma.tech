@@ -1,4 +1,5 @@
 import { fileURLToPath } from "node:url"
+import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
 import laravel from "laravel-vite-plugin"
 import { defineConfig } from "vite"
@@ -9,7 +10,8 @@ export default defineConfig({
       input: "resources/react/src/main.tsx",
       refresh: true
     }),
-    react()
+    react(),
+    tailwindcss()
   ],
   resolve: {
     alias: {

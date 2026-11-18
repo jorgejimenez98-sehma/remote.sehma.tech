@@ -12,7 +12,9 @@
       "vite.config.js",
       "package.json",
       "tsconfig.json",
-      "biome.json"
+      "biome.json",
+      "components.json",
+      "scripts/**/*.mjs"
     ]
   },
   "formatter": {
@@ -32,6 +34,9 @@
     }
   },
   "css": {
+    "parser": {
+      "tailwindDirectives": true
+    },
     "formatter": {
       "indentStyle": "space",
       "indentWidth": 2

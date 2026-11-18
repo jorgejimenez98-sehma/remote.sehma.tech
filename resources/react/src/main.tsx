@@ -1,6 +1,7 @@
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { HomePage } from "@/features/landing/home/home.page"
+import { AppProvider } from "@/providers/app-provider/app-provider"
 
 import "./styles/app.css"
 
@@ -12,6 +13,8 @@ if (!root) {
 
 createRoot(root).render(
   <StrictMode>
-    <HomePage />
+    <AppProvider>
+      <HomePage />
+    </AppProvider>
   </StrictMode>
 )
