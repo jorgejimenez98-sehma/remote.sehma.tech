@@ -41,6 +41,8 @@ pnpm format
 
 `pnpm lint` checks formatting, lint rules, and imports without changing files. `pnpm lint:fix` applies safe fixes, and `pnpm format` only formats files. Checks cover `resources/react/src/`, `vite.config.js`, `package.json`, `tsconfig.json`, and `biome.json`.
 
+VS Code workspace settings use the recommended `biomejs.biome` extension to format frontend files, apply safe fixes, and organize imports when saving with `Command + S`. Install the recommended extension when opening the project if it is not already installed.
+
 ## Database
 
 The application uses the local MySQL database `sehma_remote` at `127.0.0.1:3306`. The local defaults use the `root` account with an empty password; adjust `DB_USERNAME` and `DB_PASSWORD` in `.env` for your MySQL server. The database stays empty, with no tables or records. There are no models, migrations, seeders, factories, or database autoload namespaces. Do not run migrations or seeders to start this base. Sessions and cache use files, and queues run synchronously.
